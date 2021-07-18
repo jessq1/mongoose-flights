@@ -1,5 +1,8 @@
 import mongoose from 'mongoose'
 
+
+// console.log(env)
+
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -12,3 +15,4 @@ const db = mongoose.connection
 db.on('connected', function() {
   console.log(`Connected to MongoDB ${db.name} at ${db.host}:${db.port}`)
 })
+

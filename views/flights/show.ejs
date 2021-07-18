@@ -1,0 +1,98 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/flights/show.css" />
+<%- include('../partials/nav') %>
+
+<main>
+  <div class="container-lg py-3">
+    <div class="row">
+      <h2 class="col-sm-3"><%= title %></h2>
+      <a class="col-sm my-2" href="/flights/<%= flight._id %>/edit">
+        <button class="btn btn-outline-warning">Edit Flight</button>
+      </a>
+    </div>
+
+    <section class="px-3">
+      <h5>Airline: </h5>
+      <div class="px-3 mb-3"><%= flight.airline %>
+      </div>
+      <h5> Departs: </h5>
+      <div class="px-3 mb-3"><%= flight.departs.toLocaleDateString() %></div>
+      <h5>Flight Number: </h5>
+      <div class="px-3 mb-3"><%= flight.flightNo %></div>
+      <% // start airport list %>
+      <h5>Stops:</h5>
+      <ul class="px-3 mb-3 list-group">
+        <%- flight.airport.map(p => 
+          `<li class="list-group-item">${p.name} <small>${p.code}</small></li>`
+        ).join('') %>
+      </ul>
+    </section>
+
+    <div class="px-3 mb-4">
+      <form id="add-per-to-airport" action="/flights/<%= flight._id %>/destinations" method="POST">
+        <select name="destinationId">
+          <%- destinations.map(p => 
+            `<option value="${p._id}">${p.code}</option>`
+          ).join('') %>
+        </select>
+        <button class="btn btn-outline-warning" type="submit">Add Stop</button>
+      </form>
+    </div>
+
+    <h2>Add a Ticket</h2>
+    <div class="px-3 mb-4">
+      <form 
+        id="add-ticket-form"
+        action="/flights/<%= flight._id %>/tickets"
+        method="POST"
+      >
+        <label for="seat-input">Seat <small>- Must be ‘A1’ thru ‘F99’:</small></label>
+        <input type="string" name="seat" id="seat-input" required pattern="[A-F][1-9]\d?">
+        <label for="rating-select">Price:</label>
+        <input type="number" name="price" id="price-input">
+        <button class="btn btn-outline-warning mx-3" type="submit">Add Ticket</button>
+      </form>
+
+    </div>
+  
+    <h2>Existing Tickets</h2>
+    <div class="px-3">
+      <% if (flight.tickets.length) { %>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Ticket</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% let total = 0 %> 
+            <% flight.tickets.forEach(function(ticket) { %>
+              <% total += ticket.price %>
+              <tr>
+                <td><%= ticket.createdAt.toLocaleDateString() %></td>
+                <td><%= ticket.seat %></td>
+                <td><%= ticket.price %></td>
+              </tr>
+            <% }) %>
+            <tr>
+              <td colspan="2">Average Price: </td>
+              <td>
+                <strong><%= (total / flight.tickets.length).toFixed(1) %></strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% } else { %>
+        <h5>No Ticket Yet</h5>
+      <% } %>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<%- include('../partials/footer') %>

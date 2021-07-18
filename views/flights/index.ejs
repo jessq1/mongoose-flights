@@ -1,0 +1,38 @@
+<%- include('../partials/html-head') %>
+<link rel="stylesheet" href="/stylesheets/flights/index.css" />
+<%- include('../partials/nav') %>
+
+<main>
+  <div class="container-lg py-3">
+    <h2><%= title %></h1>
+    <table class="table my-3" id="list">
+      <thead >
+        <tr>
+          <th>Airline</th>
+          <th>Flight Number</th>
+          <th>Departs</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% flights.forEach((flight) => { %>
+        <tr>
+          <td><%= flight.airline %></td>
+          <td><%= flight.flightNo %></td>
+          <td><%= flight.departs.toLocaleDateString() %></td>
+          <td><a class="link-secondary" href="/flights/<%= flight._id %>">DETAILS</a></td>
+          <td>
+            <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-outline-danger">X</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

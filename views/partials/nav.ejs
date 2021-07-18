@@ -1,18 +1,41 @@
 
 </head>
 <body>
-  <nav>
-		<i class="fas fa-film fa-2x"></i>
-    <a 
-			href="/destination/new"
-			<%- title === 'Add Destination' ? 'class="active"' : '' %>
-		>
-			ADD DESTINATION
-		</a>
-    <a 
-      href="/flights/new" <%- title === 'Add Flights' ? 'class="active"' : '' %>
-    >ADD FLIGHT</a>
-    <a 
-      href="/flights" <%- title === 'All Flights' ? 'class="active"' : '' %>
-    >ALL FLIGHTS</a>
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #fe5928;">
+    <!-- Navbar content -->
+    <div class="container">
+      <a href="/" class="navbar-brand">Mongoose flights</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navmenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item  px-3">
+            <a class="nav-link" href="/destinations/new"
+            <%- title === 'Add Destination' ? 'class="active"' : '' %>
+          >ADD DESTINATION
+        </a>
+          </li>
+          <li class="nav-item px-3">
+            <a class="nav-link" 
+            href="/flights/new" <%- title === 'Add Flights' ? 'class="active"' : '' %>
+          >ADD FLIGHT</a>
+          </li>
+          <li class="nav-item px-3">
+            <a class="nav-link" 
+            href="/flights" <%- title === 'All Flights' ? 'class="active"' : '' %>
+          >ALL FLIGHTS</a>
+        </a>
+          </li>
+        </ul>
+      </div>
+
+
+
+    </div>
+
   </nav>
+
+  <nav>

@@ -1,8 +1,8 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
-a {
-  color: #00B7FF;
+.flightImg{
+  width: 100%;
+  height:100vh;
+  color: aliceblue;
+  padding-top: 40vh;
+  text-align: center;
+  background-image: url("https://cdn.dribbble.com/users/1731254/screenshots/8587036/media/4c32103b6840513e14a6a55c79fd6b6d.png");
 }

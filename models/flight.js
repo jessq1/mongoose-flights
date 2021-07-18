@@ -7,18 +7,36 @@ export {
 const Schema = mongoose.Schema
 
 const ticketSchema = new Schema({
-  content: String,
-  rating: {type: Number, min: 1, max: 5, default: 5}
+  seat: {
+    type:String,
+  } ,
+  price: {
+    type: Number, 
+    min: 0,
+  }
 }, {
   timestamps: true
 });
 
 const flightSchema = new Schema({
-  airline: String,
-  airport: String,
-  flightNo: Number,
-  departs: { type: Date, defualt:timestamps},
-  reviews: [ticketSchema]
+  airline: {
+    type: String,
+    enum: ['American', 'Southwest', 'United', 'Delta'],
+    required: true,
+  },
+  flightNo: {
+    type: Number,
+    min: 10,
+    max: 9999,
+  },
+  departs: {
+    type: Date,
+    default: function() {
+      return new Date().getDate()
+    },
+  },
+  tickets: [ticketSchema],
+  airport: [{type: Schema.Types.ObjectId, ref: 'Destination'}]
 }, {
   timestamps: true
 })
