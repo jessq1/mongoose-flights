@@ -11,6 +11,7 @@ export {
   deleteFlight as delete,
   edit,
   update,
+  deleteTicket,
 }
 
 function newFlight(req, res) {
@@ -45,7 +46,6 @@ function index(req, res) {
 function show(req, res) {
   Flight.findById(req.params.id)
   .populate('airport').exec(function(err, flight) {
-
     Destination.find({_id: {$nin: flight.airport}}, function(err, destinations) {
       res.render('flights/show', {
         title: 'Flight Detail', 
@@ -65,6 +65,16 @@ function createTicket(req, res) {
     })
   })
 }
+function deleteTicket(req,res){
+  console.log(req.body.ticket)
+  Flight.findById(req.params.id, function(err, flight){
+    flight.tickets.pull(req.body)
+    flight.save(function(err) {
+      res.redirect(`/flights/${flight._id}`)
+    })
+  })
+}
+
 
 function addStop(req, res) {
   Flight.findById(req.params.id, function(err, flight) {

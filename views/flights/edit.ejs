@@ -5,23 +5,28 @@
 <main>
 <main>
   <div class="container-lg py-3">
-    <h1><%= title %></h1>
-    <form id="new-form" action="/flights/<%= flight._id %>?_method=PUT" method="POST">
-      <label for="airline-input">Airline:</label>
-      <select name="airline" id="airline-select">
-          <option <%= flight.airline === 'American' ? 'selected' : '' %> value="American">American</option>
-          <option <%= flight.airline === 'Southwest' ? 'selected' : '' %>value="Southwest">Southwest</option>
-          <option <%= flight.airline === 'United' ? 'selected' : '' %>value="United">United</option>
-          <option <%= flight.airline === 'Delta' ? 'selected' : '' %>value="Delta">Delta</option>
-        </select>
+    <h2 class="py-3"><%= title %></h2>
+    <form class="px-5" id="new-form" action="/flights/<%= flight._id %>?_method=PUT" method="POST">
+      <div class="py-2">
+        <label for="airline-input">Airline:</label>
+        <select name="airline" id="airline-select">
+            <option <%= flight.airline === 'American' ? 'selected' : '' %> value="American">American</option>
+            <option <%= flight.airline === 'Southwest' ? 'selected' : '' %>value="Southwest">Southwest</option>
+            <option <%= flight.airline === 'United' ? 'selected' : '' %>value="United">United</option>
+            <option <%= flight.airline === 'Delta' ? 'selected' : '' %>value="Delta">Delta</option>
+          </select>
+      </div>
+      <div class="py-2">
+        <label for="departs-input">Departs:</label>
+        <input type="datetime-local" name="departs" value="<%= flight.departs %>" id="departs-input">
+      </div>
       
-      <label for="departs-input">Departs:</label>
-      <input type="datetime-local" name="departs" value="<%= flight.departs %>" id="departs-input">
-      
-      <label for="flightNo-input">Flight Number: </label>
-      <input type="Number" name="flightNo" value="<%= flight.flightNo %>" id="flightNo-input">
+      <div class="py-2">
+        <label for="flightNo-input">Flight Number: </label>
+        <input type="Number" name="flightNo" value="<%= flight.flightNo %>" id="flightNo-input">
+      </div>
         
-      <button type="submit">Save Flight</button>
+      <button class="my-4 btn btn-outline-warning" type="submit">Save Flight</button>
     </form>
 
   </div>

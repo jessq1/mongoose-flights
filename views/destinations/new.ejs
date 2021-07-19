@@ -3,21 +3,24 @@
 <%- include('../partials/nav') %>
 
 <main>
-	<h1><%= title %></h1>
-  <p>Please first ensure that the Destination is not in the dropdown
-    <select>
-      <% destinations.forEach(function(destination) { %>
-        <option><%= destination.code %></option>
-      <% }) %>
-    </select>
-  </p>
-  <form id="add-destination-form" action="/destinations" method="POST">
-    <label for="name-input">Name:</label>
-    <input type="text" name="name" id="name-input">
-    <label for="date-input">Code:</label>
-    <input type="text" name="code" id="code-input">
-    <button type="submit">Add Destination</button>
-  </form>
+  <div class="container-lg py-3">
+    <h2 class="py-3"><%= title %></h2>
+    <p>Please first ensure that the Destination is not in the dropdown
+      <select>
+        <% destinations.forEach(function(destination) { %>
+          <option><%= destination.code %></option>
+        <% }) %>
+      </select>
+    </p>
+    <form id="add-destination-form" action="/destinations" method="POST">
+      <label for="name-input">Name:</label>
+      <input type="text" name="name" id="name-input">
+      <label for="date-input">Code:</label>
+      <input type="text" name="code" id="code-input">
+      <button class="mx-4 btn btn-outline-warning" type="submit">Add Destination</button>
+    </form>
+
+  </div>
 </main>
 
 <%- include('../partials/footer') %>

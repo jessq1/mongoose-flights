@@ -19,7 +19,7 @@
       <div class="px-3 mb-3"><%= flight.departs.toLocaleDateString() %></div>
       <h5>Flight Number: </h5>
       <div class="px-3 mb-3"><%= flight.flightNo %></div>
-      <% // start airport list %>
+
       <h5>Stops:</h5>
       <ul class="px-3 mb-3 list-group">
         <%- flight.airport.map(p => 
@@ -35,7 +35,7 @@
             `<option value="${p._id}">${p.code}</option>`
           ).join('') %>
         </select>
-        <button class="btn btn-outline-warning" type="submit">Add Stop</button>
+        <button class="btn btn-outline-warning mx-4" type="submit">Add Stop</button>
       </form>
     </div>
 
@@ -48,9 +48,9 @@
       >
         <label for="seat-input">Seat <small>- Must be ‘A1’ thru ‘F99’:</small></label>
         <input type="string" name="seat" id="seat-input" required pattern="[A-F][1-9]\d?">
-        <label for="rating-select">Price:</label>
+        <label class="ms-3"for="rating-select">Price:</label>
         <input type="number" name="price" id="price-input">
-        <button class="btn btn-outline-warning mx-3" type="submit">Add Ticket</button>
+        <button class="btn btn-outline-warning mx-4" type="submit">Add Ticket</button>
       </form>
 
     </div>
@@ -64,6 +64,7 @@
               <th>Date</th>
               <th>Ticket</th>
               <th>Price</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -74,10 +75,15 @@
                 <td><%= ticket.createdAt.toLocaleDateString() %></td>
                 <td><%= ticket.seat %></td>
                 <td><%= ticket.price %></td>
+                <td>
+                  <form action="/flights/<%= flight._id %>/tickets?_method=DELETE" method="POST">
+                    <button class="btn btn-outline-danger" name="ticket" value="<%= ticket %>" >X </button>
+                  </form>
+                </td>
               </tr>
             <% }) %>
             <tr>
-              <td colspan="2">Average Price: </td>
+              <td colspan="2"><strong>Average Price: </strong></td>
               <td>
                 <strong><%= (total / flight.tickets.length).toFixed(1) %></strong>
               </td>

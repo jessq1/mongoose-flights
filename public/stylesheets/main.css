@@ -6,3 +6,21 @@
   text-align: center;
   background-image: url("https://cdn.dribbble.com/users/1731254/screenshots/8587036/media/4c32103b6840513e14a6a55c79fd6b6d.png");
 }
+.error-page{
+  width: 100%;
+  height:100vh;
+  color: aliceblue;
+  padding-top: 30vh;
+  text-align: center;
+  background-position: bottom;
+  background-image: url("https://us.v-cdn.net/5021068/uploads/editor/yf/j1kgz1x9cw0b.jpg");
+}
+.link{
+  color: aliceblue;
+  text-decoration-color: aliceblue;
+  text-emphasis-color: white;
+}
+.link:hover{
+  color: #fe5928;
+  text-decoration-line: none;
+}
