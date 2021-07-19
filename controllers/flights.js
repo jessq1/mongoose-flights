@@ -68,7 +68,7 @@ function createTicket(req, res) {
 function deleteTicket(req,res){
   console.log(req.body.ticket)
   Flight.findById(req.params.id, function(err, flight){
-    flight.tickets.pull(req.body)
+    flight.tickets.id(req.body.ticket).remove();
     flight.save(function(err) {
       res.redirect(`/flights/${flight._id}`)
     })
